@@ -23,11 +23,12 @@ Claude only ever *decides* which Rain SDK method to call. Execution and signing 
 
 ## Setup
 
-1. Copy the config template and fill in keys — the app will not build without this file:
+1. Fill in your keys in `RainAgentDemo/AgentLocalConfig.swift`. It ships tracked but empty,
+   with a format example beside each field. **Keep your filled-in copy local — don't commit
+   real keys.** To stop git from offering your edits for commit:
    ```sh
-   cp RainAgentDemo/AgentLocalConfig.template.swift RainAgentDemo/AgentLocalConfig.swift
+   git update-index --skip-worktree RainAgentDemo/AgentLocalConfig.swift
    ```
-   `AgentLocalConfig.swift` is git-ignored; never commit it.
 
    | Field | Where from | Required? |
    | --- | --- | --- |
@@ -57,9 +58,7 @@ the branch lives on the fork rather than upstream. `Package.resolved` pins the e
 builds are reproducible today. **Once PR #27 merges, repoint the `RainSDK` package in `project.yml`
 at `github.com/SignifyHQ/rain-sdk-ios` on a tag or `main` and re-resolve.**
 
-To develop against a local checkout instead, point the `RainSDK` package in `project.yml` at
-`path: ../rain-sdk-ios`, then run `./scripts/patch-local-packages.py` after `xcodegen generate`
-(XcodeGen emits local package refs in a form xcodebuild ignores). The Turnkey adapter ships inside `rain-core-ios`, so Turnkey needs no extra Rain product — only Turnkey's own SDK (`tkhq/swift-sdk`, pinned to the version `rain-core-ios` resolves) for the auth flow the app drives itself.
+The Turnkey adapter ships inside `rain-core-ios`, so Turnkey needs no extra Rain product — only Turnkey's own SDK (`tkhq/swift-sdk`, pinned to the version `rain-core-ios` resolves) for the auth flow the app drives itself.
 
 ## Wallet providers
 

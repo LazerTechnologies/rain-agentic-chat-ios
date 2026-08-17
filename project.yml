@@ -29,8 +29,6 @@ targets:
     platform: iOS
     sources:
       - path: RainAgentDemo
-        excludes:
-          - "AgentLocalConfig.template.swift"
     dependencies:
       - package: RainSDK
         product: rain-core-ios

@@ -1,7 +1,7 @@
-# Real keys live here; copy AgentLocalConfig.template.swift and fill in.
-AgentLocalConfig.swift
+# AgentLocalConfig.swift ships empty and IS tracked — fill it in locally,
+# and do not commit your real keys.
 
-# Other local secrets
+# Local secrets
 .env
 .env.*
 *.p8
