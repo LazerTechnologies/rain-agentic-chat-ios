@@ -1,0 +1,28 @@
+# Real keys live here; copy AgentLocalConfig.template.swift and fill in.
+AgentLocalConfig.swift
+
+# Other local secrets
+.env
+.env.*
+*.p8
+*.p12
+*.mobileprovision
+
+# Xcode
+xcuserdata/
+*.xcuserdatad/
+*.xcuserstate
+DerivedData/
+build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.moved-aside
+
+# SwiftPM local state (the pinned Package.resolved in the workspace IS tracked)
+.build/
+.swiftpm/
+RainAgentDemo.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration/
+
+# macOS
+.DS_Store
