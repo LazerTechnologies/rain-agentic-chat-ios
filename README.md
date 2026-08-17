@@ -49,14 +49,10 @@ The Xcode project is generated from `project.yml` by [XcodeGen](https://github.c
 
 ### Rain SDK dependency
 
-The Rain SDK is consumed straight from source, linking the `rain-core-ios` and `rain-privy-ios`
-products (imported as `RainCore` and `RainPrivy`). Nothing is vendored or copied.
-
-It currently resolves from `github.com/lazerfocused/rain-sdk-ios`, branch
-`feature/modular_privy_impl` — the head of the cross-fork PR #27 into `SignifyHQ/rain-sdk-ios`, so
-the branch lives on the fork rather than upstream. `Package.resolved` pins the exact revision, so
-builds are reproducible today. **Once PR #27 merges, repoint the `RainSDK` package in `project.yml`
-at `github.com/SignifyHQ/rain-sdk-ios` on a tag or `main` and re-resolve.**
+The Rain SDK is consumed from source — `github.com/lazerfocused/rain-sdk-ios`, branch
+`feature/modular_privy_impl` — linking the `rain-core-ios` and `rain-privy-ios` products
+(imported as `RainCore` and `RainPrivy`). Nothing is vendored, and `Package.resolved` pins the
+exact revision.
 
 The Turnkey adapter ships inside `rain-core-ios`, so Turnkey needs no extra Rain product — only Turnkey's own SDK (`tkhq/swift-sdk`, pinned to the version `rain-core-ios` resolves) for the auth flow the app drives itself.
 
