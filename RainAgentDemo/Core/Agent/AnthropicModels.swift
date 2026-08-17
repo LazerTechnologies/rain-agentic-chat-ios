@@ -192,10 +192,10 @@ struct ToolDefinition: Encodable, Sendable {
 }
 
 struct MessagesRequest: Encodable, Sendable {
-  var model = "claude-opus-4-8"
+  var model = "claude-opus-5"
   var maxTokens = 8192
-  // Adaptive thinking must be set explicitly on claude-opus-4-8; omitting the field
-  // disables thinking. budget_tokens / temperature / top_p are removed on this model.
+  // Adaptive thinking; budget_tokens / temperature / top_p are removed on this model.
+  // maxTokens caps thinking and response text together.
   var thinking = ThinkingConfig()
   var system: [SystemBlock]
   var tools: [ToolDefinition]
