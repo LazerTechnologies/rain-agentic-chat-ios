@@ -58,19 +58,13 @@ The Turnkey adapter ships inside `rain-core-ios`, so Turnkey needs no extra Rain
 
 ## Wallet providers
 
-Both providers register the same way on the `RainSdk` builder and resolve to the same `RainClient`, so every agent tool is provider-agnostic:
-
-| | Privy | Turnkey |
-| --- | --- | --- |
-| Login | Privy email OTP | Turnkey email OTP via the auth proxy |
-| Wallet | embedded Ethereum wallet, created on first login | sub-org Ethereum account (secp256k1, `m/44'/60'/0'/0/0`), created on first login |
-| Registered as | `PrivyProvider(PrivyConfig(privy:))` | `TurnkeyProvider(TurnkeyConfig(turnkey:))` |
-
-The provider is picked on the login screen; a restored session from either is resumed at launch. Turnkey auth (OTP, session, wallet provisioning) is app-owned — see `TurnkeyAuthService` — because the Rain SDK deliberately does not own vendor auth.
+Both register on the `RainSdk` builder and resolve to the same `RainClient`, so every agent tool is provider-agnostic: email OTP either way, Privy giving an embedded Ethereum wallet and Turnkey a sub-org account (secp256k1, `m/44'/60'/0'/0/0`), both created on first login and resumed at launch.
+Turnkey auth is app-owned — see `TurnkeyAuthService` — because the Rain SDK deliberately does not own vendor auth.
 
 ### Note on secp256k1 package identity
 
-Two packages in the transitive graph share the SPM identity `secp256k1.swift` (Boilertalk's, wanted by Web3.swift, and GigaBitcoin's, wanted by web3swift). The graph resolves when SPM fetches GigaBitcoin's repo for that identity (its 0.10.0 satisfies both ranges). This repo ships a seeded `Package.resolved` inside the workspace pinning the known-good graph; if resolution ever fails with "no versions of secp256k1.swift match 0.10.0..<0.11.0", restore that file rather than re-resolving from scratch.
+Two packages in the graph claim the SPM identity `secp256k1.swift`; the seeded `Package.resolved` pins the resolution that satisfies both.
+If resolution ever fails with "no versions of secp256k1.swift match 0.10.0..<0.11.0", restore that file rather than re-resolving from scratch.
 
 ## Demo script
 
