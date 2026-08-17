@@ -77,7 +77,10 @@ Two packages in the transitive graph share the SPM identity `secp256k1.swift` (B
 1. "What's in my wallet?" (agent calls `get_wallet_overview`, formats holdings)
 2. "Analyze my recent spending" (agent pulls history and writes a narrative summary)
 3. "Send 1 USDC to 0x..." (agent restates the transfer, native confirm sheet appears, tx hash + Basescan link on approval; try declining first)
-4. "What's backing my Rain card?" then "What would it cost to withdraw 5 USDC?" (agent chains `fetchCollateralContract` -> `fetchAdminSignature` -> `estimateWithdrawalFee`)
+4. "What's in my collateral wallet?" (agent calls `get_collateral_contracts` — contract addresses, held tokens, balances)
+5. "What would it cost to withdraw 5 USDC?" then "Withdraw 5 USDC from my collateral wallet" (agent estimates via `estimate_withdrawal_fee`, then `withdraw_collateral` fetches the admin signature, signs, and submits on-chain behind the confirmation sheet)
+
+Steps 4 and 5 need `rainApiKey` / `rainUserId` set; the wallet tools above them don't.
 
 ## Production notes
 
