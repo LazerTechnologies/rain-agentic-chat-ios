@@ -81,11 +81,7 @@ Two packages in the transitive graph share the SPM identity `secp256k1.swift` (B
 
 ## Production notes
 
-This demo calls the Anthropic API directly from the device with a key in local config. **Do not ship this pattern.** In production:
-
-- Route Anthropic traffic through a backend proxy that owns the API key, the system prompt, and the tool definitions
-- Keep tool *execution* exactly where it is: on-device, behind the same confirmation gates
-- Add streaming (SSE) for lower perceived latency
+The API key ships on-device for demo convenience — in production, put it behind a backend proxy (OpenRouter, your own gateway) via `claudeProxyBaseURL`.
 
 ## Architecture
 
