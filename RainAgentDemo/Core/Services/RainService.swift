@@ -29,8 +29,7 @@ enum WalletProviderKind: String, CaseIterable, Identifiable, Sendable {
 }
 
 /// Builds the Rain SDK with the selected wallet provider and exposes the resolved client to the
-/// agent layer. A heavy trim of the example app's `RainSDKService`: no Portal, no deprecated
-/// Double wrappers.
+/// agent layer. Privy and Turnkey only; money stays Decimal end to end.
 @MainActor
 final class RainService: ObservableObject {
   static let shared = RainService()

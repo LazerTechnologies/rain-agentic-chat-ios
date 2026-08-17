@@ -39,8 +39,7 @@ enum AmountMath {
 
 /// Rain issues one active withdrawal signature per (token, amount, recipient); requesting a
 /// second for the same inputs errors with "active signature already exists". Cache the last
-/// signature so estimate_withdrawal_fee and withdraw_collateral share it (mirrors the demo
-/// app's SignatureKey logic).
+/// signature so estimate_withdrawal_fee and withdraw_collateral share it.
 actor AdminSignatureCache {
   struct Key: Hashable {
     let chainId: Int
