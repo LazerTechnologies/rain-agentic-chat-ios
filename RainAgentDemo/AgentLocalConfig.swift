@@ -46,6 +46,13 @@ enum AgentLocalConfig {
   /// e.g. "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
   static let rainUserId = ""
 
+  /// Rain's Auth Pull operator for the sandbox environment: the spender an approval names, and the
+  /// only one the SDK accepts. Not a secret — Rain publishes it per environment (sandbox /
+  /// production) at https://docs.rain.xyz/docs/authorization-pull-from-user-wallet. A production
+  /// app reads it from Rain rather than shipping it as a constant. Empty disables the Auth Pull
+  /// tools.
+  static let rainAuthPullOperator = "0x5a6E6b0d5Ea051CfFF9b3dcC2Aa8Dac226458f29"
+
   /// Network the assistant operates on by default. `.baseSepolia` or `.avalancheFuji`.
   static let defaultChain: WalletChain = .baseSepolia
 }

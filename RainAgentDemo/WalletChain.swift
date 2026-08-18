@@ -26,7 +26,9 @@ enum WalletChain: String, CaseIterable, Identifiable, Sendable {
   var rpcUrl: String {
     switch self {
     case .avalancheFuji: return "https://api.avax-test.network/ext/bc/C/rpc"
-    case .baseSepolia: return "https://sepolia.base.org"
+    // sepolia.base.org rate-limits and drops eth_call under load; publicnode is what the SDK's
+    // own demo uses.
+    case .baseSepolia: return "https://base-sepolia-rpc.publicnode.com"
     }
   }
 

@@ -22,6 +22,7 @@
 		80E655B2A1E131E39829FAD1 /* AnthropicModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D55CF6B5C8E7EAAEDC7B0DA /* AnthropicModels.swift */; };
 		8439CD0A726922E397E528B9 /* InputBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3969DA1469D5D5543A346626 /* InputBarView.swift */; };
 		88D93B40715EEDE51A9CE9A9 /* ToolRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83F5D6A7D1A6A86B9638EB3 /* ToolRegistry.swift */; };
+		8F0356273F6377FB30C81743 /* AuthPullTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F4CE9F79C7FEF718246CF /* AuthPullTools.swift */; };
 		93299F1F27616749E883A023 /* rain-privy-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 9E17A929CFB9993972E64A95 /* rain-privy-ios */; };
 		9F2DB936C9BA847CBF631018 /* TurnkeyAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C708C75F5EAEA91E279E6E /* TurnkeyAuthService.swift */; };
 		AC6A2010FA64242B8D8D936C /* OpenAIProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9795333DF8E9AEFD85D1C1 /* OpenAIProxy.swift */; };
@@ -43,6 +44,7 @@
 		2B10898F07395931091DAF4B /* RainTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainTools.swift; sourceTree = "<group>"; };
 		3969DA1469D5D5543A346626 /* InputBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBarView.swift; sourceTree = "<group>"; };
 		3A0F59A48B7F9F3FB212F76C /* AgentLoop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentLoop.swift; sourceTree = "<group>"; };
+		479F4CE9F79C7FEF718246CF /* AuthPullTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPullTools.swift; sourceTree = "<group>"; };
 		4BA1BB22676415937D4E17BB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		621AC717A0EFC2F7AA5B730E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D55CF6B5C8E7EAAEDC7B0DA /* AnthropicModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnthropicModels.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				3A0F59A48B7F9F3FB212F76C /* AgentLoop.swift */,
 				6FF3A1F8895A65E1AA082600 /* AnthropicClient.swift */,
 				6D55CF6B5C8E7EAAEDC7B0DA /* AnthropicModels.swift */,
+				479F4CE9F79C7FEF718246CF /* AuthPullTools.swift */,
 				BE9795333DF8E9AEFD85D1C1 /* OpenAIProxy.swift */,
 				2B10898F07395931091DAF4B /* RainTools.swift */,
 				813C74C4D8663CCDE1C5EA8C /* SystemPrompt.swift */,
@@ -264,6 +267,7 @@
 				559D606AC2D5CA8F4A1EC58B /* AnthropicClient.swift in Sources */,
 				80E655B2A1E131E39829FAD1 /* AnthropicModels.swift in Sources */,
 				B7999018604721EFE34CA78E /* ApprovalCardView.swift in Sources */,
+				8F0356273F6377FB30C81743 /* AuthPullTools.swift in Sources */,
 				1D276423D9C944DFCF64A088 /* ChatView.swift in Sources */,
 				2ED675E1D27EA64948B541C8 /* ChatViewModel.swift in Sources */,
 				8439CD0A726922E397E528B9 /* InputBarView.swift in Sources */,
@@ -503,7 +507,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lazerfocused/rain-sdk-ios.git";
 			requirement = {
-				branch = feature/modular_privy_impl;
+				branch = feature/auth_pull_impl;
 				kind = branch;
 			};
 		};

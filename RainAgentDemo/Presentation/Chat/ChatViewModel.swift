@@ -66,17 +66,23 @@ final class ChatViewModel: ObservableObject, AgentLoopDelegate {
 
   private var loop: AgentLoop?
 
-  static let suggestedPrompts = [
-    "What's in my wallet?",
-    "Analyze my recent spending",
-    "What's backing my Rain card?",
-  ]
+  /// Instance-level, because the Auth Pull suggestion only makes sense when this build has the
+  /// tools behind it.
+  let suggestedPrompts: [String]
 
   init() {
     let rainService = RainService.shared
     walletAddress = rainService.walletAddress
     chain = rainService.selectedChain
     provider = rainService.activeProvider
+
+    let authPullChains = WalletChain.allCases.filter { rainService.authPullChainIds.contains($0.chainId) }
+    suggestedPrompts =
+      [
+        "What's in my wallet?",
+        "Analyze my recent spending",
+        "What's backing my Rain card?",
+      ] + (authPullChains.isEmpty ? [] : ["Can my card pull USDC from this wallet?"])
 
     if let client = try? rainService.requireClient(),
       let rain = try? rainService.requireRain()
@@ -98,7 +104,8 @@ final class ChatViewModel: ObservableObject, AgentLoopDelegate {
         systemPrompt: SystemPrompt.build(
           walletAddress: walletAddress,
           defaultChain: chain,
-          provider: rainService.activeProvider
+          provider: rainService.activeProvider,
+          authPullChains: authPullChains
         )
       )
       loop.delegate = self

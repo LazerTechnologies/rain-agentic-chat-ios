@@ -49,6 +49,11 @@ final class RainService: ObservableObject {
   /// Wallet address cached at init so the UI and system prompt can read it synchronously.
   @Published var walletAddress: String = ""
 
+  /// Chains the built SDK will actually accept an Auth Pull approval on: the configured
+  /// operator/token map narrowed to chains that have an RPC endpoint. Empty means the feature is
+  /// off for this build, and its tools are not registered.
+  @Published private(set) var authPullChainIds: Set<Int> = []
+
   private init() {}
 
   /// Builds the SDK against an authenticated Privy singleton and resolves the client.
@@ -83,6 +88,7 @@ final class RainService: ObservableObject {
     rain?.reset()
     rain = nil
     client = nil
+    authPullChainIds = []
     walletAddress = ""
     activeProvider = nil
     isInitialized = false
@@ -104,6 +110,11 @@ final class RainService: ObservableObject {
       // USDC so it shows up in balances.
       .registerTokens(WalletChain.allCases.map(\.usdcTokenInfo))
       .rainApiEnvironment(.dev)
+    // Auth Pull is refused entirely without this, and then accepts only this operator and the
+    // canonical USDC contract per chain. Sandbox targets, to match .dev above.
+    if !AgentLocalConfig.rainAuthPullOperator.isEmpty {
+      builder.authPullConfig(.sandbox(operatorAddress: AgentLocalConfig.rainAuthPullOperator))
+    }
     register(builder)
 
     if !AgentLocalConfig.rainApiKey.isEmpty, !AgentLocalConfig.rainUserId.isEmpty {
@@ -121,6 +132,7 @@ final class RainService: ObservableObject {
 
     rain = sdk
     client = resolvedClient
+    authPullChainIds = sdk.authPullChainIds
     walletAddress = address
     activeProvider = kind
     isInitialized = resolvedClient.isInitialized

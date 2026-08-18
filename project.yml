@@ -8,9 +8,10 @@ options:
 packages:
   # One package vending a product per provider: rain-core-ios, rain-portal-ios, rain-privy-ios.
   RainSDK:
-    # Head of SignifyHQ/rain-sdk-ios#27 (a cross-fork PR, so the branch lives on the fork).
+    # Head of SignifyHQ/rain-sdk-ios#27 (a cross-fork PR, so the branch lives on the fork), plus
+    # the Auth Pull work stacked on top of it.
     url: https://github.com/lazerfocused/rain-sdk-ios.git
-    branch: feature/modular_privy_impl
+    branch: feature/auth_pull_impl
   Privy:
     url: https://github.com/privy-io/privy-ios
     from: 2.14.0

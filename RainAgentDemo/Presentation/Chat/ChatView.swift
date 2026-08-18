@@ -95,7 +95,7 @@ struct ChatView: View {
       .padding(.top, 24)
 
       VStack(alignment: .leading, spacing: 8) {
-        ForEach(ChatViewModel.suggestedPrompts, id: \.self) { prompt in
+        ForEach(viewModel.suggestedPrompts, id: \.self) { prompt in
           Button {
             viewModel.send(prompt)
           } label: {

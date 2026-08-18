@@ -69,7 +69,7 @@ actor AdminSignatureCache {
 
 // MARK: - JSON result helpers
 
-private func jsonString(_ value: JSONValue) -> String {
+func jsonString(_ value: JSONValue) -> String {
   guard let data = try? JSONEncoder().encode(value),
     let string = String(data: data, encoding: .utf8)
   else { return "{}" }
@@ -120,7 +120,7 @@ private func transactionJSON(_ tx: RainTransaction) -> JSONValue {
 
 // MARK: - Chain resolution
 
-private func resolveChain(_ input: JSONValue, default defaultChain: WalletChain) throws -> WalletChain {
+func resolveChain(_ input: JSONValue, default defaultChain: WalletChain) throws -> WalletChain {
   guard let raw = input["chain"]?.stringValue, !raw.isEmpty else { return defaultChain }
   guard let chain = WalletChain(rawValue: raw) else {
     let options = WalletChain.allCases.map(\.rawValue).joined(separator: ", ")
@@ -129,7 +129,7 @@ private func resolveChain(_ input: JSONValue, default defaultChain: WalletChain)
   return chain
 }
 
-private var chainSchemaProperty: JSONValue {
+var chainSchemaProperty: JSONValue {
   .object([
     "type": "string",
     "enum": .array(WalletChain.allCases.map { .string($0.rawValue) }),
@@ -137,7 +137,7 @@ private var chainSchemaProperty: JSONValue {
   ])
 }
 
-private func objectSchema(_ properties: [String: JSONValue], required: [String] = []) -> JSONValue {
+func objectSchema(_ properties: [String: JSONValue], required: [String] = []) -> JSONValue {
   .object([
     "type": "object",
     "properties": .object(properties),
@@ -608,5 +608,5 @@ func makeRainTools(
     getCollateralContracts,
     estimateWithdrawalFee,
     withdrawCollateral,
-  ]
+  ] + makeAuthPullTools(client: client, defaultChain: defaultChain)
 }
